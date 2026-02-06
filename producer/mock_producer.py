@@ -13,7 +13,7 @@ from config.settings import settings
 from dotenv import load_dotenv
 load_dotenv()
 
-ACTIONS = ("click", "view", "scroll")
+ACTIONS = ("click", "view", "scroll", "add_to_cart")
 EVENTS = ("app_launch", "add_to_cart",
           "product_listing", "product_view",
           "mainpage_click", "auth", "reg_success")

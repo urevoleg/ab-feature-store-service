@@ -1,27 +1,37 @@
 triggers:
   - name: app_launch_flag
+    description: Запуск в МП
     type: flag
-    where:
-      in:
-        event_name: [app_launch, auth, reg_success]
+    event_name: app_launch
 
   - name: add_to_cart_counts
+    description: Добавление в корзину
     type: metric
+    event_name: add_to_cart
     where:
-      eq:
-        event_name: add_to_cart
+      in:
+        action: [add_to_cart]
 
   - name: mainpage_click_flag
+    description: Клик по главной
     type: flag
+    event_name: mainpage_click
     where:
-      and:
-        - eq:
-          event_name: mainpage_click
-        - eq:
-          action: click
+      eq:
+        action: click
+
+  - name: mainpage_view_counts
+    description: Просмотры главной
+    type: metrics
+    event_name: *
+    where:
+      eq:
+        page: mainpage
 
   - name: click_counts
+    description: Любые клики
     type: metric
+    event_name: *
     where:
       eq:
         action: click
