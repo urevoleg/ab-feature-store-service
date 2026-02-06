@@ -8,7 +8,7 @@ class TriggerEngine:
 
     def process(self, event):
         for trigger in self.triggers:
-            if event.event_name != trigger.event_name or trigger.event_name != "*":
+            if event.event_name != trigger.event_name and trigger.event_name != "*":
                 continue
 
             if not match_where(trigger.where, event.props):

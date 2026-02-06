@@ -23,7 +23,7 @@ triggers:
   - name: mainpage_view_counts
     description: Просмотры главной
     type: metrics
-    event_name: *
+    event_name: '*'
     where:
       eq:
         page: mainpage
@@ -31,7 +31,7 @@ triggers:
   - name: favCategory_flag
     description: Просмотр любимых категорий
     type: flag
-    event_name: *
+    event_name: '*'
     where:
       eq:
         page: favCategory
@@ -39,7 +39,7 @@ triggers:
   - name: click_counts
     description: Любые клики
     type: metric
-    event_name: *
+    event_name: '*'
     where:
       eq:
         action: click
