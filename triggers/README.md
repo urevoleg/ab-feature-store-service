@@ -10,7 +10,6 @@
   - `eq` — равно
   - `in` — вхождение в массив
   - `and`, `or`
-- Без `eval`, безопасно и прозрачно
 
 ---
 
@@ -18,14 +17,26 @@
 
 ### Примеры
 
-### 1. Простое равенство
+### Конкретное событие (может быть без where)
+
+```yaml
+event_name: app_launch
+```
+
+### Любое событие
+
+```yaml
+event_name: *
+```
+
+### Простое равенство
 ```yaml
 where:
   eq:
     action: view
 ```
 
-## Вхождение в массив
+### Вхождение в массив
 
 ```yaml
 where:
@@ -33,7 +44,7 @@ where:
     page: [catalogScreen, productCard]
 ```
 
-## AND
+### AND
 
 ```yaml
 where:
@@ -45,7 +56,7 @@ where:
 ```
 
 
-## OR
+### OR
 
 ```yaml
 where:

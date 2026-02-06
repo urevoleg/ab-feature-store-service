@@ -28,6 +28,14 @@ triggers:
       eq:
         page: mainpage
 
+  - name: favCategory_flag
+    description: Просмотр любимых категорий
+    type: flag
+    event_name: *
+    where:
+      eq:
+        page: favCategory
+
   - name: click_counts
     description: Любые клики
     type: metric

@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ACTIONS = ("click", "view", "scroll", "add_to_cart")
+PAGES = ("mainpage", "delivery", "productScreen", "clubMain", "todayMain", "success", "magnets", "favCategory")
 EVENTS = ("app_launch", "add_to_cart",
           "product_listing", "product_view",
           "mainpage_click", "auth", "reg_success")
@@ -31,7 +32,8 @@ def build_event(event_name: str, magnit_id: str) -> dict:
                 "event_name": event_name,
                 "timestamp_with_offset": pendulum.now("UTC").to_iso8601_string(),
                 "event_attrs": {
-                    "action": random.choice(ACTIONS)
+                    "action": random.choice(ACTIONS),
+                    "page": random.choice(PAGES)
                 },
                 "version": 0
             }
