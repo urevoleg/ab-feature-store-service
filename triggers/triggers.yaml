@@ -1,0 +1,27 @@
+triggers:
+  - name: app_launch_flag
+    type: flag
+    where:
+      in:
+        event_name: [app_launch, auth, reg_success]
+
+  - name: add_to_cart_counts
+    type: metric
+    where:
+      eq:
+        event_name: add_to_cart
+
+  - name: mainpage_click_flag
+    type: flag
+    where:
+      and:
+        - eq:
+          event_name: mainpage_click
+        - eq:
+          action: click
+
+  - name: click_counts
+    type: metric
+    where:
+      eq:
+        action: click

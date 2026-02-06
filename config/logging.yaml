@@ -1,0 +1,16 @@
+version: 1
+
+formatters:
+  standard:
+    format: "⏰ %(asctime)s - 💎 %(levelname)s - %(filename)s - %(funcName)s:%(lineno)s - 🧾 %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: standard
+    level: INFO
+    stream: ext://sys.stdout
+
+root:
+  level: INFO
+  handlers: [console]

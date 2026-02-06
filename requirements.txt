@@ -1,0 +1,8 @@
+pydantic
+pendulum
+kafka-python
+jinja2
+fastapi
+uvicorn
+pyyaml
+python-dotenv
