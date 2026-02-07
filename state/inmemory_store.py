@@ -23,7 +23,6 @@ class InMemoryStateStore(StateStore):
 
     def set_flag_once(self, user_id: str, name: str, ts: datetime):
         date = self._date(ts)
-        print(f'FLAG: -> {name}')
         self.state[date][user_id]["flags"].add(name)
 
     def inc_metric(self, user_id: str, name: str, ts: datetime):

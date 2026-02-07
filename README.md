@@ -66,7 +66,8 @@ triggers:
   - name: add_to_cart_counts
     description: Добавление в корзину
     type: metric
-    event_name: add_to_cart
+    event_name: 
+      eq: add_to_cart
     where:
       in:
         action: [add_to_cart]
@@ -74,7 +75,8 @@ triggers:
   - name: favCategory_flag
     description: Просмотр любимых категорий
     type: flag
-    event_name: '*'
+    event_name:
+      regex: '.*'
     where:
       eq:
         page: favCategory
