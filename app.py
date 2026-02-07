@@ -2,6 +2,7 @@ import logging
 import logging.config
 
 import pathlib
+from pprint import pprint
 
 from config.settings import settings
 from consumer.kafka_consumer import create_consumer
@@ -40,7 +41,7 @@ def main():
         # временно — для наглядности
         logger.info("Current state:")
         for trigger_state in store.dump():
-            print(trigger_state)
+            pprint(trigger_state)
 
 
 if __name__ == "__main__":
