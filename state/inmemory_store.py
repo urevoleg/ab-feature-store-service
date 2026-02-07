@@ -1,9 +1,9 @@
 from collections import defaultdict
-from datetime import datetime
-
-from pprint import pprint
+from datetime import datetime, date
+from typing import List
 
 from state.store import StateStore
+from state.models import TriggerState
 
 
 class InMemoryStateStore(StateStore):
@@ -18,18 +18,44 @@ class InMemoryStateStore(StateStore):
             )
         )
 
-    def _date(self, ts: datetime) -> str:
+    def _date_str(self, ts: datetime) -> str:
         return ts.strftime("%Y-%m-%d")
 
+    def _date(self, ts: datetime) -> date:
+        return ts.date()
+
     def set_flag_once(self, user_id: str, name: str, ts: datetime):
-        date = self._date(ts)
-        self.state[date][user_id]["flags"].add(name)
+        date_key = self._date_str(ts)
+        self.state[date_key][user_id]["flags"].add(name)
 
     def inc_metric(self, user_id: str, name: str, ts: datetime):
-        date = self._date(ts)
-        self.state[date][user_id]["metrics"][name] += 1
+        date_key = self._date_str(ts)
+        self.state[date_key][user_id]["metrics"][name] += 1
 
-    # удобный хелпер для дебага
-    def dump(self) -> dict:
-        pprint(self.state)
-        return self.state
+    def dump(self) -> List[TriggerState]:
+        """
+        Возвращает массив TriggerState (Pydantic),
+        готовых к сериализации и отправке
+        """
+        result: List[TriggerState] = []
+
+        for date_str, users in self.state.items():
+            d = date.fromisoformat(date_str)
+
+            for user_id, payload in users.items():
+                result.append(
+                    TriggerState(
+                        date=d,
+                        user_id=user_id,
+                        flags=sorted(payload["flags"]),
+                        metrics=dict(payload["metrics"]),
+                    )
+                )
+
+        return result
+
+    def clear(self):
+        """
+        Очистка стора (например, после успешной отправки в Kafka)
+        """
+        self.state.clear()
