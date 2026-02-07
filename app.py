@@ -41,7 +41,7 @@ def main():
         # временно — для наглядности
         logger.info("Current state:")
         for trigger_state in store.dump():
-            print(trigger_state)
+            logger.info(trigger_state)
 
 
 if __name__ == "__main__":
