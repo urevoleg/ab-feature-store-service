@@ -32,7 +32,6 @@ def main():
 
     for msg in consumer:
         try:
-            logger.info(msg.value)
             handle_message(msg.value, engine)
             consumer.commit()
         except Exception as e:
