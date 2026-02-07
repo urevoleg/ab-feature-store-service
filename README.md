@@ -27,6 +27,10 @@ Trigger Engine — это Python-сервис для обработки собы
 
 ## Архитектура
 
+Mock idea:
+
+![arch-idea.png](images/arch-idea.png)
+
 ```text
 Kafka (event-stream-v1)
         │
