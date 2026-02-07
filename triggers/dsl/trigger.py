@@ -1,6 +1,6 @@
 
 
-def match_where(where: dict, event_attrs: dict) -> bool:
+def match_trigger(where: dict, event_attrs: dict) -> bool:
     if not where:
         return True
 
@@ -17,9 +17,9 @@ def match_where(where: dict, event_attrs: dict) -> bool:
         return True
 
     if "and" in where:
-        return all(match_where(cond, event_attrs) for cond in where["and"])
+        return all(match_trigger(cond, event_attrs) for cond in where["and"])
 
     if "or" in where:
-        return any(match_where(cond, event_attrs) for cond in where["or"])
+        return any(match_trigger(cond, event_attrs) for cond in where["or"])
 
     raise ValueError(f"Unknown DSL operator: {where}")

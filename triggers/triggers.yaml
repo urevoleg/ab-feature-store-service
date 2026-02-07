@@ -2,12 +2,14 @@ triggers:
   - name: app_launch_flag
     description: Запуск в МП
     type: flag
-    event_name: app_launch
+    event_name:
+      eq: app_launch
 
   - name: add_to_cart_counts
     description: Добавление в корзину
     type: metric
-    event_name: add_to_cart
+    event_name:
+      eq: add_to_cart
     where:
       in:
         action: [add_to_cart]
@@ -15,7 +17,8 @@ triggers:
   - name: mainpage_click_flag
     description: Клик по главной
     type: flag
-    event_name: mainpage_click
+    event_name:
+      eq: mainpage_click
     where:
       eq:
         action: click
@@ -23,7 +26,8 @@ triggers:
   - name: mainpage_view_counts
     description: Просмотры главной
     type: metrics
-    event_name: '*'
+    event_name:
+      regex: '.*'
     where:
       eq:
         page: mainpage
@@ -31,15 +35,33 @@ triggers:
   - name: favCategory_flag
     description: Просмотр любимых категорий
     type: flag
-    event_name: '*'
+    event_name:
+      regex: '.*'
     where:
       eq:
         page: favCategory
 
+  - name: Mplus_magnets_click
+    description: M+ магнитики
+    type: metric
+    event_name:
+      in:
+        - today_magnitPlus_magnet_click
+        - today_benefitsMain_magnet_click
+
+  - name: games_activation
+    description: Активация игры
+    type: metric
+    event_name:
+      or:
+        - ends_with: gameWin_view
+        - ends_with: gameOver_view
+
   - name: click_counts
     description: Любые клики
     type: metric
-    event_name: '*'
+    event_name:
+      regex: '.*'
     where:
       eq:
         action: click

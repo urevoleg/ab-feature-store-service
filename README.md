@@ -1,4 +1,4 @@
-# Trigger Engine
+# Trigger Engine for AB-feature store
 
 Trigger Engine — это Python-сервис для обработки событий мобильного приложения
 и вычисления пользовательских флагов и метрик на основе YAML-описанных триггеров.
@@ -18,21 +18,12 @@ Trigger Engine — это Python-сервис для обработки собы
   - **flag** — срабатывает один раз в день на пользователя
   - **metric** — считает количество событий
 - Простой DSL для фильтрации событий (`=`, `in`, `and`, `or`)
+- Расширенный DSL для event_name (`in`, `eq`, `regex`)
 - InMemory state store (для локальной разработки)
 - Готовность к расширению (Redis, S3, Iceberg)
 
 ---
 
-## Поддерживаемые события (пример)
-
-- `app_launch`
-- `auth`
-- `add_to_cart`
-- `product_view`
-- `product_listing`
-- `mainpage_click`
-
----
 
 ## Архитектура
 

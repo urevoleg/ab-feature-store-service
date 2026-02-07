@@ -17,15 +17,30 @@ ACTIONS = ("click", "view", "scroll", "add_to_cart")
 PAGES = ("mainpage", "delivery", "productScreen", "clubMain", "todayMain", "success", "magnets", "favCategory")
 EVENTS = ("app_launch", "add_to_cart",
           "product_listing", "product_view",
-          "mainpage_click", "auth", "reg_success")
+          "mainpage_click", "auth", "reg_success",
+          "today_benefitsMain_magnet_click",
+          "today_benefitsMain_magnet_click",
+          "today_gameWin_view",
+          "profile_gameWin_view",
+          "delivery_gameWin_view",
+          "catalog_gameWin_view",
+          "market_gameWin_view",
+          "miniAppCosmetic_gameWin_view",
+          "system_gameWin_view",
+          )
 USERS = ("6d85b107-73e0-4457-a742-eb9c52ad83a1",
          "945e60dd-0c64-419f-98a8-16654e3d4a5d",
          "014dfea7-f697-4683-be8b-346d712198a0",
          "7c0643dc-2d10-49bd-9155-02c24835a577",
-         "69fc4284-81a5-4a31-9650-609f35a89eef")
+         "69fc4284-81a5-4a31-9650-609f35a89eef",
+         "66efe36d-f183-407a-af59-e492d1a2d351",
+         "6659d065-374a-4c42-a942-31d6287bf1d7",
+         "34b8d772-2ca2-4030-886c-cc825851fd97",
+         "9607c6f3-beb2-4df1-abfe-c2f52c3ab133",
+         "633b3711-9b17-44b2-b297-b7b88e136850")
 
 
-def build_event(event_name: str, magnit_id: str) -> dict:
+def build_event(event_name: str, magnit_id: str, batch_size: int = 25) -> dict:
     payload = {
         "event_prop": [
             {
@@ -36,7 +51,7 @@ def build_event(event_name: str, magnit_id: str) -> dict:
                     "page": random.choice(PAGES)
                 },
                 "version": 0
-            }
+            } for _ in range(batch_size)
         ],
         "user_prop": {
             "ids": [

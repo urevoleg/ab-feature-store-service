@@ -6,6 +6,6 @@ from typing import Optional, Dict
 class Trigger:
     name: str
     description: str
-    type: str
-    event_name: str
+    type: str                  # flag | metric
+    event_name: Dict           # eq | in | regex
     where: Optional[Dict] = None

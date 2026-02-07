@@ -20,14 +20,33 @@
 ### Конкретное событие (может быть без where)
 
 ```yaml
-event_name: app_launch
+event_name: 
+  eq: todayMain
 ```
 
-### Любое событие
+### Проверка списка
 
 ```yaml
-event_name: *
+event_name:
+  in:
+    - event_name_1
+    - event_name_2
 ```
+
+### Регулярки, start/ends_with
+
+```yaml
+event_name:
+  regex: "^delivery_.*_view$"
+```
+------------------------
+```yaml
+event_name:
+  or:
+    - ends_with: "_favCategory_success_view"
+    - ends_with: "_favCategoryTiles_success_view"
+```
+
 
 ### Простое равенство
 ```yaml
